@@ -25,4 +25,8 @@ public class Centro {
 
     @OneToMany(mappedBy = "centro", cascade = CascadeType.ALL)
     private List<Cliente> clientes;
+
+    public void setId(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

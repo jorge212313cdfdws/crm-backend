@@ -43,6 +43,6 @@ public class CentroController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id){
-        service.delete(id);
+        service.deleteById(id);
     }
 }

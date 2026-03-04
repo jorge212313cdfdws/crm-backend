@@ -3,5 +3,5 @@ package com.crm.repository;
 import com.crm.entity.Recurso;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RecursosRepository extends JpaRepository<Recurso, Integer> {
+public interface RecursoRepository extends JpaRepository<Recurso, Integer> {
 }

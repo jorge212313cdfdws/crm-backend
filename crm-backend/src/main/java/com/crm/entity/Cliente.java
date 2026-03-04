@@ -38,4 +38,8 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente")
     private List<Pago> pagos;
+
+    public void setId(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
