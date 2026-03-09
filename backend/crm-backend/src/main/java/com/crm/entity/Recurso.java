@@ -21,4 +21,8 @@ public class Recurso {
     private Centro centro;
 
     private String nombre;
+
+    public void setId(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
