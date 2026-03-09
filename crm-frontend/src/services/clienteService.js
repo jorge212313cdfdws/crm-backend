@@ -1,17 +1,11 @@
-import axiosClient from "../api/axiosClient";
+import axios from "axios";
+
+const API = "http://localhost:3000/clientes"; // ajusta si tu backend usa otra ruta
 
 export const getClientes = () => {
-  return axiosClient.get("/clientes");
+  return axios.get(API);
 };
 
 export const createCliente = (cliente) => {
-  return axiosClient.post("/clientes", cliente);
-};
-
-export const updateCliente = (id, cliente) => {
-  return axiosClient.put(`/clientes/${id}`, cliente);
-};
-
-export const deleteCliente = (id) => {
-  return axiosClient.delete(`/clientes/${id}`);
+  return axios.post(API, cliente);
 };

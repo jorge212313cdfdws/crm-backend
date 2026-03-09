@@ -1,32 +1,30 @@
-import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
-function MainLayout({ children }) {
+import Navbar from "../components/layout/Navbar";
+import Sidebar from "../components/layout/Sidebar";
+
+import "./MainLayout.css";
+
+function MainLayout() {
+
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
-      
-      {/* Sidebar */}
-      <div style={{
-        width: "220px",
-        background: "#1f2937",
-        color: "white",
-        padding: "20px"
-      }}>
-        <h2>CRM</h2>
 
-        <nav style={{ marginTop: "20px", display: "flex", flexDirection: "column", gap: "10px" }}>
-          <Link to="/" style={{ color: "white" }}>Dashboard</Link>
-          <Link to="/clientes" style={{ color: "white" }}>Clientes</Link>
-          <Link to="/empleados" style={{ color: "white" }}>Empleados</Link>
-          <Link to="/centros" style={{ color: "white" }}>Centros</Link>
-        </nav>
-      </div>
+    <div className="crm-layout">
 
-      {/* Contenido */}
-      <div style={{ flex: 1, padding: "30px", background: "#f3f4f6" }}>
-        {children}
+      <Navbar />
+
+      <div className="crm-body">
+
+        <Sidebar />
+
+        <main className="crm-content">
+          <Outlet />
+        </main>
+
       </div>
 
     </div>
+
   );
 }
 
