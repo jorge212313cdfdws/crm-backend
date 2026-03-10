@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-// 1. Importación de Layout (Basado en tu carpeta src/components/layout)
 import { Sidebar } from './components/layout/Sidebar';
 import { Navbar } from './components/layout/Navbar'; 
-
-// 2. Importación de Clientes (Basado en tu carpeta src/pages/clientes)
-// Asegúrate de que el componente dentro del archivo se llame "ClientesTable"
 import { ClientesTable } from './pages/clientes/ClientesTable';
 
 function App() {
