@@ -1,21 +1,12 @@
-import axiosClient from "../api/axiosClient";
+import axios from 'axios';
 
-export const getClientes = () => {
-  return axiosClient.get("/api/clientes");
+const API_URL = 'http://localhost:5000/api/clientes'; 
+export const getClientes = async () => {
+  const { data } = await axios.get(API_URL);
+  return data;
 };
 
-export const getCliente = (id) => {
-  return axiosClient.get(`/api/clientes/${id}`);
-};
-
-export const createCliente = (cliente) => {
-  return axiosClient.post("/api/clientes", cliente);
-};
-
-export const updateCliente = (id, cliente) => {
-  return axiosClient.put(`/api/clientes/${id}`, cliente);
-};
-
-export const deleteCliente = (id) => {
-  return axiosClient.delete(`/api/clientes/${id}`);
+export const crearCliente = async (cliente) => {
+  const { data } = await axios.post(API_URL, cliente);
+  return data;
 };
