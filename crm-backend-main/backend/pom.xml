@@ -68,7 +68,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <!-- RUTA FORZADA: No la cambies, es la que está en tu repo -->
-                    <mainClass>com.crm.BackendApplication</mainClass>
+                    <mainClass>com.crm.backend.CrmBackendApplication</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
