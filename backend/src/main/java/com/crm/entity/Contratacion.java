@@ -2,18 +2,12 @@ package com.crm.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "contrataciones")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class Contratacion {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,10 +16,10 @@ public class Contratacion {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @ManyToOne
-    @JoinColumn(name = "recurso_id")
-    private Recurso recurso;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
+    private String estado;
 
-    private LocalDate fechaDesde;
-    private LocalDate fechaHasta;
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 }
