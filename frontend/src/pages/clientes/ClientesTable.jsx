@@ -1,6 +1,6 @@
 import { FileText, Table as TableIcon, Mail, Phone, Users, Search } from 'lucide-react';
 
-export const TablaClientes = ({ clientes }) => {
+export const ClientesTable = ({ clientes }) => {
   return (
     <div className="flex-1 p-6 bg-[#f4f7f6] overflow-y-auto">
       {/* Encabezado Superior */}

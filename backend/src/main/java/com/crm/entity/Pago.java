@@ -8,9 +8,15 @@ import java.time.LocalDate;
 @Table(name = "pagos")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class Pago {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    // ESTA ES LA RELACIÓN QUE FALTABA Y QUE CAUSABA EL ERROR
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "contratacion_id")
@@ -20,6 +26,7 @@ public class Pago {
     private LocalDate fechaPago;
     private String metodoPago;
 
+    // Métodos manuales por si acaso el compilador falla con Lombok
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 }
