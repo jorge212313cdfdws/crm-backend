@@ -1,0 +1,42 @@
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background);
+}
+
+.error-card {
+  text-align: center;
+  padding: var(--spacing-xl);
+  max-width: 420px;
+}
+
+.error-code {
+  display: block;
+  font-size: 96px;
+  font-weight: 800;
+  color: #e5e7eb;
+  line-height: 1;
+  margin-bottom: var(--spacing-md);
+}
+
+.error-title {
+  font-size: 22px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.error-description {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.6;
+}
+
+.error-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
+}
