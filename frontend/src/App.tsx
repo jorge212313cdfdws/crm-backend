@@ -36,7 +36,7 @@ function App() {
         <header className="page-header">
           <div>
             <h1>PHOENIX HUB</h1>
-            <p style={{ color: "#6b7280", fontSize: "14px" }}>JorgePH</p>
+            <p className="page-header-subtitle">JorgePH</p>
           </div>
           <button className="primary">Nueva Alta</button>
         </header>

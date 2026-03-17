@@ -72,7 +72,7 @@ function LoginPage() {
             />
           </div>
           {error && <p className="login-error">{error}</p>}
-          <button type="submit" className="primary" style={{ width: "100%" }} disabled={loading}>
+          <button type="submit" className="primary login-btn-full" disabled={loading}>
             {loading ? "Comprobando..." : "Entrar"}
           </button>
         </form>

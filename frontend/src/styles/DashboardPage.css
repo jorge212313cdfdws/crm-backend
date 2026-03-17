@@ -9,11 +9,11 @@
 }
 
 .dashboard-card {
-  background: #f4f4f4;
+  background: var(--color-surface-alt);
   padding: 30px;
   text-align: center;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   text-decoration: none;
-  color: black;
-  font-weight: bold;
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
 }
