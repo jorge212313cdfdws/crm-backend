@@ -24,8 +24,5 @@ public class Empleado {
     private String apellidos;
     private String email;
     private Boolean activo;
-
-    public void setId(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    private String rol;
 }
