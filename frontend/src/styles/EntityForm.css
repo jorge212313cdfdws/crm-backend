@@ -1,0 +1,43 @@
+.entity-form-card {
+  margin-bottom: var(--spacing-lg);
+  width: 100%;
+  max-width: 600px;
+}
+
+.entity-form-card h3 {
+  margin-bottom: var(--spacing-md);
+}
+
+.entity-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-sm);
+}
+
+.entity-form-grid .form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.entity-form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding-top: 22px;
+}
+
+.entity-form-checkbox label {
+  margin-bottom: 0;
+}
+
+.entity-form-select {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-strong);
+}
+
+.entity-form-error {
+  color: var(--color-error);
+  font-size: var(--font-size-xs);
+  margin-bottom: var(--spacing-sm);
+}
