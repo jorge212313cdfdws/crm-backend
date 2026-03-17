@@ -1,5 +1,6 @@
 package com.crm.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonIgnoreProperties({"clientes"})
 public class Centro {
 
     @Id
@@ -27,6 +29,6 @@ public class Centro {
     private List<Cliente> clientes;
 
     public void setId(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.id = id;
     }
 }
