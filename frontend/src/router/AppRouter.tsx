@@ -8,13 +8,15 @@ import LoginPage from "../pages/login/LoginPage";
 import HomePage from "../pages/home/HomePage";
 import DashboardPage from "../pages/dashboard/DashboardPage";
 import ClientesPage from "../pages/clientes/ClientesPage";
-import ClienteNuevoPage from "../pages/clientes/ClienteNuevoPage";
 import EmpleadosPage from "../pages/empleados/EmpleadosPage";
 import AccesosPage from "../pages/accesos/AccesosPage";
 import ActividadesPage from "../pages/actividades/ActividadesPage";
 import LeadsPage from "../pages/leads/LeadsPage";
 import ContratacionesPage from "../pages/contrataciones/ContratacionesPage";
 import BonosPage from "../pages/bonos/BonosPage";
+import CentrosPage from "../pages/centros/CentrosPage";
+import ProximamentePage from "../pages/ProximamentePage";
+import { Error400, Error401, Error403, Error404, Error500 } from "../pages/error/ErrorPage";
 
 function AppRouter() {
   return (
@@ -33,17 +35,31 @@ function AppRouter() {
           <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
             <Route path="/dashboard"      element={<DashboardPage />} />
             <Route path="/clientes"       element={<ClientesPage />} />
-            <Route path="/clientes/nuevo" element={<ClienteNuevoPage />} />
             <Route path="/empleados"      element={<EmpleadosPage />} />
             <Route path="/accesos"        element={<AccesosPage />} />
             <Route path="/actividades"    element={<ActividadesPage />} />
             <Route path="/leads"          element={<LeadsPage />} />
             <Route path="/contrataciones" element={<ContratacionesPage />} />
             <Route path="/bonos"          element={<BonosPage />} />
+            <Route path="/centros"        element={<CentrosPage />} />
+            <Route path="/reservas"       element={<ProximamentePage titulo="Reservas" />} />
+            <Route path="/informes"       element={<ProximamentePage titulo="Informes" />} />
+            <Route path="/contabilidad"   element={<ProximamentePage titulo="Contabilidad" />} />
+            <Route path="/crm"            element={<ProximamentePage titulo="CRM" />} />
+            <Route path="/inventario"     element={<ProximamentePage titulo="Inventario" />} />
           </Route>
 
           {/* Raíz → login */}
           <Route path="/" element={<Navigate to="/login" replace />} />
+
+          {/* Errores */}
+          <Route path="/400" element={<Error400 />} />
+          <Route path="/401" element={<Error401 />} />
+          <Route path="/403" element={<Error403 />} />
+          <Route path="/500" element={<Error500 />} />
+
+          {/* 404 catch-all */}
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
