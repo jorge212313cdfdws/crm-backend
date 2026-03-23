@@ -24,6 +24,8 @@ export interface Empleado {
   centro?: Centro | null;
 }
 
+export type TipoCliente = "VISITA" | "SOCIO" | "PRL" | "SINDICATO" | "MUTUA" | "INVITADO" | "ASOCIACIONES";
+
 export interface Cliente {
   id: number;
   nombre: string;
@@ -33,6 +35,8 @@ export interface Cliente {
   numeroCliente?: number;
   fechaNacimiento?: string;
   pagador?: boolean;
+  tipoAcceso?: TipoCliente;
+  enListaNegra?: boolean;
 }
 
 export interface Actividad {
@@ -91,6 +95,15 @@ export interface Curso {
 
 export interface InscripcionCurso {
   id: number;
+}
+
+export interface ListaNegra {
+  id: number;
+  cliente?: { id: number; nombre?: string; apellidos?: string };
+  motivo?: string;
+  fechaBloqueo?: string;
+  autorEmpleado?: { id: number };
+  activo?: boolean;
 }
 
 export interface HistorialEstado {
