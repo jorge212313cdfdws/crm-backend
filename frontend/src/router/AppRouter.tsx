@@ -16,6 +16,8 @@ import ContratacionesPage from "../pages/contrataciones/ContratacionesPage";
 import BonosPage from "../pages/bonos/BonosPage";
 import CentrosPage from "../pages/centros/CentrosPage";
 import ProximamentePage from "../pages/ProximamentePage";
+import {Reservas}   from "../pages/reservas/Reservas"; 
+
 import { Error400, Error401, Error403, Error404, Error500 } from "../pages/error/ErrorPage";
 
 function AppRouter() {
@@ -42,7 +44,10 @@ function AppRouter() {
             <Route path="/contrataciones" element={<ContratacionesPage />} />
             <Route path="/bonos"          element={<BonosPage />} />
             <Route path="/centros"        element={<CentrosPage />} />
-            <Route path="/reservas"       element={<ProximamentePage titulo="Reservas" />} />
+
+            {/* --- 2. CAMBIA ESTA LÍNEA ESPECÍFICA --- */}
+            <Route path="/reservas"       element={<Reservas />} />
+
             <Route path="/informes"       element={<ProximamentePage titulo="Informes" />} />
             <Route path="/contabilidad"   element={<ProximamentePage titulo="Contabilidad" />} />
             <Route path="/crm"            element={<ProximamentePage titulo="CRM" />} />
