@@ -36,10 +36,17 @@ public class Cliente {
     private Boolean pagador;
     private String direccion;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_acceso")
+    private TipoCliente tipoAcceso;
+
+    @Column(name = "en_lista_negra")
+    private Boolean enListaNegra;
+
     @OneToMany(mappedBy = "cliente")
     private List<Pago> pagos;
 
     public void setId(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.id = id;
     }
 }

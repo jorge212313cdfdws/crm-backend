@@ -1,26 +1,27 @@
 import { useEffect, useState } from "react";
 import { getClientes, crearCliente, actualizarCliente } from "../../services/clienteService";
 import type { Cliente } from "../../types";
-import { ClientesTable } from "./ClientesTable";
+import { ClientesTable } from "../clientes/ClientesTable";
 import FilterBar from "../../components/FilterBar";
 import EntityForm from "../../components/EntityForm";
 import type { FieldDef } from "../../components/EntityForm";
 import "../../styles/ClientesPage.css";
 
-const TIPOS_SOCIO = [
-  { value: "SOCIO",        label: "Socio"        },
-  { value: "SINDICATO",    label: "Sindicato"    },
-  { value: "ASOCIACIONES", label: "Asociaciones" },
+const TIPOS_EMPRESA = [
+  { value: "VISITA",   label: "Visita"   },
+  { value: "PRL",      label: "PRL"      },
+  { value: "MUTUA",    label: "Mutua"    },
+  { value: "INVITADO", label: "Invitado" },
 ];
 
-const TIPOS_SOCIO_SET = new Set(["SOCIO", "SINDICATO", "ASOCIACIONES"]);
+const TIPOS_EMPRESA_SET = new Set(["VISITA", "PRL", "MUTUA", "INVITADO"]);
 
 const CAMPOS: FieldDef[] = [
-  { name: "nombre",          label: "Nombre",           type: "text",     required: true },
-  { name: "apellidos",       label: "Apellidos",        type: "text",     required: true },
-  { name: "email",           label: "Email",            type: "email",    required: true },
+  { name: "nombre",          label: "Nombre",           type: "text",  required: true },
+  { name: "apellidos",       label: "Apellidos",        type: "text",  required: true },
+  { name: "email",           label: "Email",            type: "email", required: true },
   { name: "fechaNacimiento", label: "Fecha nacimiento", type: "text" },
-  { name: "tipoAcceso",      label: "Tipo",             type: "select",   options: TIPOS_SOCIO },
+  { name: "tipoAcceso",      label: "Tipo",             type: "select", options: TIPOS_EMPRESA },
   { name: "activo",          label: "Activo",           type: "checkbox" },
   { name: "pagador",         label: "Pagador",          type: "checkbox" },
 ];
@@ -31,17 +32,16 @@ const EMPTY_FORM: FormValues = {
   nombre: "", apellidos: "", email: "", fechaNacimiento: "", tipoAcceso: "VISITA", activo: true, pagador: false,
 };
 
-function ClientesPage() {
-  const [clientes, setClientes] = useState<Cliente[]>([]);
+function EmpresasPage() {
+  const [clientes, setClientes]       = useState<Cliente[]>([]);
   const [mostrarForm, setMostrarForm] = useState<boolean>(false);
-  const [editandoId, setEditandoId] = useState<number | null>(null);
-  const [form, setForm] = useState<FormValues>(EMPTY_FORM);
-  const [guardando, setGuardando] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
+  const [editandoId, setEditandoId]   = useState<number | null>(null);
+  const [form, setForm]               = useState<FormValues>(EMPTY_FORM);
+  const [guardando, setGuardando]     = useState<boolean>(false);
+  const [error, setError]             = useState<string>("");
 
   const [filtroNumero, setFiltroNumero] = useState<string>("");
   const [filtroActivo, setFiltroActivo] = useState<string>("");
-  const [filtroPagador, setFiltroPagador] = useState<string>("");
 
   useEffect(() => { cargar(); }, []);
 
@@ -69,10 +69,6 @@ function ClientesPage() {
     setError("");
   };
 
-  const handleChange = (name: string, value: string | boolean) => {
-    setForm((f) => ({ ...f, [name]: value }));
-  };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
@@ -95,38 +91,36 @@ function ClientesPage() {
       cancelar();
       cargar();
     } catch {
-      setError("Error al guardar el socio.");
+      setError("Error al guardar la empresa.");
     } finally {
       setGuardando(false);
     }
   };
 
-  const clientesFiltrados = clientes.filter((c) => {
-    if (c.tipoAcceso && !TIPOS_SOCIO_SET.has(c.tipoAcceso)) return false;
+  const filtrados = clientes.filter((c) => {
+    if (!TIPOS_EMPRESA_SET.has(c.tipoAcceso ?? "")) return false;
     if (filtroNumero && !String(c.id).includes(filtroNumero)) return false;
     if (filtroActivo === "activo" && !c.activo) return false;
     if (filtroActivo === "inactivo" && c.activo) return false;
-    if (filtroPagador === "si" && !c.pagador) return false;
-    if (filtroPagador === "no" && c.pagador) return false;
     return true;
   });
 
   return (
     <div>
       <div className="page-header page-header-padding">
-        <h1>Socios</h1>
+        <h1>Empresas</h1>
         <button className="primary" onClick={() => mostrarForm ? cancelar() : setMostrarForm(true)}>
-          {mostrarForm ? "Cancelar" : "+ Nuevo socio"}
+          {mostrarForm ? "Cancelar" : "+ Nueva empresa"}
         </button>
       </div>
 
       <div className="clientes-filters-padding">
         {mostrarForm && (
           <EntityForm
-            title={editandoId !== null ? "Editar socio" : "Nuevo socio"}
+            title={editandoId !== null ? "Editar empresa" : "Nueva empresa"}
             fields={CAMPOS}
             values={form}
-            onChange={handleChange}
+            onChange={(name, value) => setForm((f) => ({ ...f, [name]: value }))}
             onSubmit={handleSubmit}
             onCancel={cancelar}
             guardando={guardando}
@@ -136,7 +130,7 @@ function ClientesPage() {
         <FilterBar
           busqueda={filtroNumero}
           onBusqueda={setFiltroNumero}
-          busquedaPlaceholder="Buscar por nº de socio..."
+          busquedaPlaceholder="Buscar por ID..."
           selects={[
             {
               value: filtroActivo,
@@ -147,24 +141,15 @@ function ClientesPage() {
                 { value: "inactivo", label: "Solo inactivos" },
               ],
             },
-            {
-              value: filtroPagador,
-              onChange: setFiltroPagador,
-              placeholder: "Pagador y no pagador",
-              options: [
-                { value: "si", label: "Solo pagadores"    },
-                { value: "no", label: "Solo no pagadores" },
-              ],
-            },
           ]}
-          hayFiltros={!!(filtroNumero || filtroActivo || filtroPagador)}
-          onLimpiar={() => { setFiltroNumero(""); setFiltroActivo(""); setFiltroPagador(""); }}
+          hayFiltros={!!(filtroNumero || filtroActivo)}
+          onLimpiar={() => { setFiltroNumero(""); setFiltroActivo(""); }}
         />
       </div>
 
-      <ClientesTable clientes={clientesFiltrados} recargar={cargar} onEditar={abrirEditar} />
+      <ClientesTable clientes={filtrados} recargar={cargar} onEditar={abrirEditar} />
     </div>
   );
 }
 
-export default ClientesPage;
+export default EmpresasPage;

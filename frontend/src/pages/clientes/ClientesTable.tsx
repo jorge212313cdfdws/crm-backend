@@ -5,9 +5,10 @@ import "../../styles/ClientesTable.css";
 interface ClientesTableProps {
   clientes: Cliente[];
   recargar?: () => void;
+  onEditar?: (cliente: Cliente) => void;
 }
 
-export const ClientesTable = ({ clientes }: ClientesTableProps) => {
+export const ClientesTable = ({ clientes, onEditar }: ClientesTableProps) => {
   return (
     <div className="clientes-table-wrapper">
       <div className="clientes-table-container">
@@ -29,9 +30,11 @@ export const ClientesTable = ({ clientes }: ClientesTableProps) => {
               <th>Nombre</th>
               <th>Datos de contacto</th>
               <th>Alta</th>
+              <th>Tipo</th>
               <th>Recursos</th>
               <th className="col-debe">Debe</th>
               <th>Pago</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -40,7 +43,7 @@ export const ClientesTable = ({ clientes }: ClientesTableProps) => {
                 <td className="td-img">
                   <div className="avatar">👤</div>
                 </td>
-                <td className="td-num-socio">{c.numeroCliente || "---"}</td>
+                <td className="td-num-socio">{c.id}</td>
                 <td className="td-nombre">{c.nombre} {c.apellidos}</td>
                 <td className="td-contacto">
                   <div className="contacto-row">
@@ -51,6 +54,7 @@ export const ClientesTable = ({ clientes }: ClientesTableProps) => {
                   </div>
                 </td>
                 <td className="td-alta">{c.fechaNacimiento || "---"}</td>
+                <td>{c.tipoAcceso ?? "---"}</td>
                 <td>
                   <span className="recursos-badge">
                     {c.activo ? "Activo" : "Inactivo"}
@@ -58,6 +62,13 @@ export const ClientesTable = ({ clientes }: ClientesTableProps) => {
                 </td>
                 <td className="td-debe">0 €</td>
                 <td className="td-pago">{c.pagador ? "Sí" : "No"}</td>
+                <td>
+                  {onEditar && (
+                    <button className="secondary btn-editar" onClick={() => onEditar(c)}>
+                      Editar
+                    </button>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
