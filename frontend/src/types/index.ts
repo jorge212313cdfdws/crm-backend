@@ -58,6 +58,7 @@ export interface ClaseSesion {
   horaFin: string;     // Ej: "11:00"
   monitor: string;     // Ej: "Sergio"
   fecha: string;       // Formato: "19/3/2026" (clave para el filtrado)
+  clientes?: Cliente[];
 }
 
 export interface Reserva {
