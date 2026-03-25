@@ -31,4 +31,6 @@ public class Centro {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    
 }

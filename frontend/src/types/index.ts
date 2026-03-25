@@ -1,3 +1,4 @@
+// --- 1. NÚCLEO Y ESTRUCTURA ---
 export interface Centro {
   id: number;
   nombre: string;
@@ -14,6 +15,7 @@ export interface Recurso {
   nombre: string;
 }
 
+// --- 2. USUARIOS Y PERSONAL ---
 export interface Empleado {
   id: number;
   nombre: string;
@@ -39,17 +41,54 @@ export interface Cliente {
   enListaNegra?: boolean;
 }
 
+// --- 3. GESTIÓN DE RESERVAS Y CALENDARIO ---
+export interface Maquina {
+  id: number;
+  nombre: string;
+  tipo: string; 
+}
+
 export interface Actividad {
   id: number;
   nombre: string;
 }
 
+// Esta es la que usa tu nuevo componente de Reservas.tsx
+export interface ClaseSesion {
+  id: number;
+  actividad: string;   // Ej: "PILATES"
+  sala: string;        // Ej: "SALA 1"
+  horaInicio: string;  // Ej: "10:00"
+  horaFin: string;     // Ej: "11:00"
+  monitor: string;     // Ej: "Sergio"
+  fecha: string;       // Formato: "19/3/2026" (clave para el filtrado)
+}
+
+export interface Reserva {
+  id?: number;
+  clienteId: number;
+  maquinaId: number;
+  horaInicio: string;
+  modalidad: string;
+  fecha?: string;      // Añadido para independencia de días
+  cliente?: Cliente;
+  maquina?: Maquina;
+}
+
+// --- 4. ACCESOS Y SEGUIMIENTO ---
 export interface Acceso {
   id: number;
   fecha: string;
   clienteId?: number;
 }
 
+export interface HistorialEstado {
+  id: number;
+  estado: string;
+  fecha: string;
+}
+
+// --- 5. COMERCIAL Y PAGOS ---
 export interface BonoConfig {
   id: number;
   nombre: string;
@@ -78,6 +117,7 @@ export interface Lead {
   email?: string;
 }
 
+// --- 6. PERFILES Y FORMACIÓN ---
 export interface PerfilCliente {
   id: number;
   nombre: string;
@@ -95,19 +135,4 @@ export interface Curso {
 
 export interface InscripcionCurso {
   id: number;
-}
-
-export interface ListaNegra {
-  id: number;
-  cliente?: { id: number; nombre?: string; apellidos?: string };
-  motivo?: string;
-  fechaBloqueo?: string;
-  autorEmpleado?: { id: number };
-  activo?: boolean;
-}
-
-export interface HistorialEstado {
-  id: number;
-  estado: string;
-  fecha: string;
 }

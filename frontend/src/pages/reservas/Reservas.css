@@ -1,0 +1,111 @@
+.reservas-layout {
+  display: flex;
+  flex-direction: row-reverse; /* Esto mueve el sidebar a la derecha */
+  gap: 20px;
+  padding: 20px;
+  background-color: #f9fafb;
+  height: calc(100vh - 80px);
+}
+
+.reservas-sidebar {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.calendar-main {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  overflow-y: auto;
+  position: relative;
+}
+
+.grid-header {
+  background: #f3f4f6;
+  padding: 15px;
+  font-weight: bold;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.time-slot-label {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #6b7280;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.day-column {
+  position: relative;
+  background-image: linear-gradient(#f3f4f6 1px, transparent 1px);
+  background-size: 100% 80px;
+}
+
+.clase-card {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  background: white;
+  border-left: 5px solid #8b5cf6;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.1s;
+}
+
+/* Fondo oscuro detrás del modal */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* La tarjeta del formulario */
+.modal-card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  width: 400px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.modal-card h2 { margin-top: 0; color: #111827; font-size: 1.25rem; }
+
+.form-group { margin-bottom: 15px; }
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 5px;
+}
+
+/* Estilo para los select (desplegables) */
+.form-group select, .form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}

@@ -18,11 +18,9 @@ import LeadsPage from "../pages/leads/LeadsPage";
 import ContratacionesPage from "../pages/contrataciones/ContratacionesPage";
 import BonosPage from "../pages/bonos/BonosPage";
 import CentrosPage from "../pages/centros/CentrosPage";
-import ReservasPage from "../pages/reservas/ReservasPage";
-import InformesPage from "../pages/informes/InformesPage";
-import ContabilidadPage from "../pages/contabilidad/ContabilidadPage";
-import CrmPage from "../pages/crm/CrmPage";
-import InventarioPage from "../pages/inventario/InventarioPage";
+import ProximamentePage from "../pages/ProximamentePage";
+import {Reservas}   from "../pages/reservas/Reservas"; 
+
 import { Error400, Error401, Error403, Error404, Error500 } from "../pages/error/ErrorPage";
 
 function AppRouter() {
@@ -52,11 +50,14 @@ function AppRouter() {
             <Route path="/contrataciones" element={<ContratacionesPage />} />
             <Route path="/bonos"          element={<BonosPage />} />
             <Route path="/centros"        element={<CentrosPage />} />
-            <Route path="/reservas"       element={<ReservasPage />} />
-            <Route path="/informes"       element={<InformesPage />} />
-            <Route path="/contabilidad"   element={<ContabilidadPage />} />
-            <Route path="/crm"            element={<CrmPage />} />
-            <Route path="/inventario"     element={<InventarioPage />} />
+
+            {/* --- 2. CAMBIA ESTA LÍNEA ESPECÍFICA --- */}
+            <Route path="/reservas"       element={<Reservas />} />
+
+            <Route path="/informes"       element={<ProximamentePage titulo="Informes" />} />
+            <Route path="/contabilidad"   element={<ProximamentePage titulo="Contabilidad" />} />
+            <Route path="/crm"            element={<ProximamentePage titulo="CRM" />} />
+            <Route path="/inventario"     element={<ProximamentePage titulo="Inventario" />} />
           </Route>
 
           {/* Raíz → login */}
