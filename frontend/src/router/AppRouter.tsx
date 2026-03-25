@@ -8,8 +8,11 @@ import LoginPage from "../pages/login/LoginPage";
 import HomePage from "../pages/home/HomePage";
 import DashboardPage from "../pages/dashboard/DashboardPage";
 import ClientesPage from "../pages/clientes/ClientesPage";
+import EmpresasPage from "../pages/empresas/EmpresasPage";
 import EmpleadosPage from "../pages/empleados/EmpleadosPage";
 import AccesosPage from "../pages/accesos/AccesosPage";
+import VisitasPage from "../pages/visitas/VisitasPage";
+import ListaNegraPage from "../pages/listanegra/ListaNegraPage";
 import ActividadesPage from "../pages/actividades/ActividadesPage";
 import LeadsPage from "../pages/leads/LeadsPage";
 import ContratacionesPage from "../pages/contrataciones/ContratacionesPage";
@@ -37,8 +40,11 @@ function AppRouter() {
           <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
             <Route path="/dashboard"      element={<DashboardPage />} />
             <Route path="/clientes"       element={<ClientesPage />} />
+            <Route path="/empresas"       element={<EmpresasPage />} />
             <Route path="/empleados"      element={<EmpleadosPage />} />
             <Route path="/accesos"        element={<AccesosPage />} />
+            <Route path="/visitas"        element={<VisitasPage />} />
+            <Route path="/lista-negra"    element={<ListaNegraPage />} />
             <Route path="/actividades"    element={<ActividadesPage />} />
             <Route path="/leads"          element={<LeadsPage />} />
             <Route path="/contrataciones" element={<ContratacionesPage />} />

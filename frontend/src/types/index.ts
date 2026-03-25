@@ -26,6 +26,8 @@ export interface Empleado {
   centro?: Centro | null;
 }
 
+export type TipoCliente = "VISITA" | "SOCIO" | "PRL" | "SINDICATO" | "MUTUA" | "INVITADO" | "ASOCIACIONES";
+
 export interface Cliente {
   id: number;
   nombre: string;
@@ -35,6 +37,8 @@ export interface Cliente {
   numeroCliente?: number;
   fechaNacimiento?: string;
   pagador?: boolean;
+  tipoAcceso?: TipoCliente;
+  enListaNegra?: boolean;
 }
 
 // --- 3. GESTIÓN DE RESERVAS Y CALENDARIO ---

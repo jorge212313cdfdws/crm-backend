@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getEmpleados, crearEmpleado, actualizarEmpleado } from "../../services/empleadoService";
 import { getCentros } from "../../services/centroService";
+import { supabaseAdmin } from "../../api/supabaseClient";
 import type { Empleado, Centro } from "../../types";
 import FilterBar from "../../components/FilterBar";
 import EntityForm from "../../components/EntityForm";
@@ -103,6 +104,15 @@ function EmpleadosPage() {
       if (editandoId !== null) {
         await actualizarEmpleado(editandoId, payload);
       } else {
+        const { error: authError } = await supabaseAdmin.auth.admin.createUser({
+          email: String(form.email),
+          password: "12345678",
+          email_confirm: true,
+        });
+        if (authError) {
+          setError("Error al crear el usuario: " + authError.message);
+          return;
+        }
         await crearEmpleado(payload);
       }
       cancelar();

@@ -34,8 +34,17 @@ public class ClienteController {
     public ResponseEntity<Cliente> update(@PathVariable Integer id,@RequestBody Cliente obj){
         return service.findById(id)
                 .map(e->{
-                    obj.setId(id);
-                    return ResponseEntity.ok(service.save(obj));
+                    if (obj.getNombre()          != null) e.setNombre(obj.getNombre());
+                    if (obj.getApellidos()       != null) e.setApellidos(obj.getApellidos());
+                    if (obj.getEmail()           != null) e.setEmail(obj.getEmail());
+                    if (obj.getActivo()          != null) e.setActivo(obj.getActivo());
+                    if (obj.getPagador()         != null) e.setPagador(obj.getPagador());
+                    if (obj.getDireccion()       != null) e.setDireccion(obj.getDireccion());
+                    if (obj.getFechaNacimiento() != null) e.setFechaNacimiento(obj.getFechaNacimiento());
+                    if (obj.getTipoAcceso()      != null) e.setTipoAcceso(obj.getTipoAcceso());
+                    if (obj.getEnListaNegra()    != null) e.setEnListaNegra(obj.getEnListaNegra());
+                    if (obj.getCentro()          != null) e.setCentro(obj.getCentro());
+                    return ResponseEntity.ok(service.save(e));
                 }).orElse(ResponseEntity.notFound().build());
     }
 
